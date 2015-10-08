@@ -18,6 +18,7 @@
 		637A8EDF1BC3814C00ACD313 /* grimedrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EDE1BC3814C00ACD313 /* grimedrop.mp3 */; };
 		637A8EE11BC3BA8200ACD313 /* grimedrop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EE01BC3BA8200ACD313 /* grimedrop2.mp3 */; };
 		637A8EE31BC3C01300ACD313 /* dream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EE21BC3C01300ACD313 /* dream.mp3 */; };
+		D9361B191BC5CD29007152FA /* EngineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9361B181BC5CD29007152FA /* EngineViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		637A8EDE1BC3814C00ACD313 /* grimedrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedrop.mp3; sourceTree = "<group>"; };
 		637A8EE01BC3BA8200ACD313 /* grimedrop2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedrop2.mp3; sourceTree = "<group>"; };
 		637A8EE21BC3C01300ACD313 /* dream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dream.mp3; sourceTree = "<group>"; };
+		D9361B181BC5CD29007152FA /* EngineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				637A8E891BC2BFDB00ACD313 /* AppDelegate.swift */,
 				637A8E8B1BC2BFDB00ACD313 /* ViewController.swift */,
+				D9361B181BC5CD29007152FA /* EngineViewController.swift */,
 				637A8EDB1BC3382D00ACD313 /* Music */,
 				637A8E8D1BC2BFDB00ACD313 /* Main.storyboard */,
 				637A8E901BC2BFDB00ACD313 /* Images.xcassets */,
@@ -242,6 +245,7 @@
 			files = (
 				637A8E8C1BC2BFDB00ACD313 /* ViewController.swift in Sources */,
 				637A8E8A1BC2BFDB00ACD313 /* AppDelegate.swift in Sources */,
+				D9361B191BC5CD29007152FA /* EngineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
