@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>72CC06EC-2FBE-4386-A581-BF2277E4541C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Drop</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>748EC8BC31505E4989B6D06D452E756DB40D0012</key>
+		<string>github.com:JaeHunRo/DropCity.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Drop.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>748EC8BC31505E4989B6D06D452E756DB40D0012</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:JaeHunRo/DropCity.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>748EC8BC31505E4989B6D06D452E756DB40D0012</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>748EC8BC31505E4989B6D06D452E756DB40D0012</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DropCity</string>
+		</dict>
+	</array>
+</dict>
+</plist>
