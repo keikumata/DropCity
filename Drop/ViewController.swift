@@ -20,7 +20,7 @@ class ViewController: UIViewController{
     var auTimePitch = AVAudioUnitTimePitch()
     var pressedTime: NSTimeInterval?
 //    var goBackTo: NSTimeInterval?
-    var goBackTo:Float?
+    var goBackTo:UInt64?
     var soundTimer: NSTimer?
     var rate:Float?
     var firstHeight:Float?
@@ -29,6 +29,7 @@ class ViewController: UIViewController{
     var temp:Double?
     var reverbPlayers:[AVPlayer] = []
     let N:Int = 10
+    var sampleRate: Double?
     
     @IBOutlet weak var PlayButton: UIButton!
     @IBOutlet var LongPressView: UILongPressGestureRecognizer!
@@ -50,16 +51,7 @@ class ViewController: UIViewController{
         let playerLayer=AVPlayerLayer(player: avplayer!)
         playerLayer.frame=CGRectMake(0, 0, 300, 50)
         self.view.layer.addSublayer(playerLayer)
-        
-//        // try reverb effect
-//        for i in 0...N {
-//            var tempurl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("dream", ofType: "mp3")!);
-//            var tempplayerItem = AVPlayerItem(URL: tempurl)
-//            playerItem!.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed
-//            var tempavplayer=AVPlayer(playerItem: tempplayerItem!)
-//
-//            reverbPlayers.append(tempavplayer)
-//        }
+  
 
         
         
@@ -71,6 +63,7 @@ class ViewController: UIViewController{
         
         // audioEngine stuff
 //        let audioFile = AVAudioFile(forReading: sound, error: &error)
+//        sampleRate = audioFile.fileFormat.sampleRate
 //        audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: &error)
 //        audioPlayer.prepareToPlay()
 //        audioPlayer.enableRate = true
@@ -85,6 +78,7 @@ class ViewController: UIViewController{
 //        
 //        
 //        playerNode.scheduleFile(audioFile, atTime:nil, completionHandler:nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,14 +107,23 @@ class ViewController: UIViewController{
         default: break;
         }
     }
-
+    
+//    func returnTimeInSeconds() -> AVAudioTime {
+//        var nodeTime = playerNode.lastRenderTime
+////        var playerTime = playerNode.playerTimeForNodeTime(nodeTime)
+//        var seconds = Double(nodeTime.sampleTime) / sampleRate!
+//        return AVAudioTime(sampleTime: Int64(seconds), atRate: sampleRate!)
+//    }
+    
     @IBAction func playButtonPressed(sender: UIButton) {
-        avplayer!.seekToTime(CMTimeMake(50, 1))
-        avplayer!.play()
-//        audioPlayer.currentTime = 20;
-//        audioPlayer.play()
+                avplayer!.seekToTime(CMTimeMake(50, 1))
+                avplayer!.play()
+        //        audioPlayer.currentTime = 20;
+        //        audioPlayer.play()
+        
 //        if engine.running {
-//            playerNode.play()
+//            playerNode.playAtTime(AVAudioTime(hostTime:UInt64(50)))
+////            playerNode.play()
 //        } else {
 //            if !engine.startAndReturnError(&error) {
 //                println("error couldn't start engine")
@@ -128,28 +131,12 @@ class ViewController: UIViewController{
 //                    println("error \(e.localizedDescription)")
 //                }
 //            } else {
-//                playerNode.play()
+//                playerNode.playAtTime(AVAudioTime(hostTime:UInt64(50)))
+////                playerNode.play()
 //            }
 //        }
     }
-//    func reverb () {
-//        let delay:Float = 0.02
-//        for i in 0...N {
-//            var curDelay:Float = delay*Float(i)
-//            var player:AVPlayer = reverbPlayers[i]
-//            //M_E is e=2.718...
-//            //dividing N by 2 made it sound ok for the case N=10
-//            var exponent:Double = -Double(i)/Double(N/2)
-//            var volume = Float(pow(Double(M_E), exponent))
-//            player.volume = volume
-//            let t1 = Float(avplayer!.currentTime().value)
-//            let t2 = Float(avplayer!.currentTime().timescale)
-//            let currentSeconds = t1 / t2
-//            
-//            player.seekToTime(CMTimeMake(Int64(currentSeconds+curDelay),1))
-//            
-//        }
-//    }
+
     func soundTimerPlayed() {
 
         let t1 = Float(avplayer!.currentTime().value)
@@ -161,6 +148,9 @@ class ViewController: UIViewController{
         avplayer!.play()
         avplayer!.rate = avplayer!.rate+rate_change!
         println(avplayer!.rate)
+        
+//        playerNode.playAtTime(UInt64(goBackTo!))
+        
         if (avplayer!.rate<=1.5) {
             soundTimer = NSTimer.scheduledTimerWithTimeInterval(Double(2/avplayer!.rate), target: self, selector: Selector("soundTimerPlayed"), userInfo: nil, repeats: false)
         }
@@ -174,16 +164,20 @@ class ViewController: UIViewController{
             soundTimer = NSTimer.scheduledTimerWithTimeInterval(Double(2/(3*avplayer!.rate)), target: self, selector: Selector("soundTimerPlayed"), userInfo: nil, repeats: false)
         }
     }
-        func player() {
+    func player() {
         let t1 = Float(avplayer!.currentTime().value)
         let t2 = Float(avplayer!.currentTime().timescale)
         let currentSeconds = t1 / t2
-        goBackTo = currentSeconds - 2
+        
+        goBackTo = UInt64(currentSeconds) - 2
+        println(goBackTo!)
+//        rate = playerNode.rate
+        
         rate = avplayer!.rate;
         
 //        pressedTime = audioPlayer.currentTime
 //        goBackTo = pressedTime! - 2.0
-            soundTimerPlayed()
+        soundTimerPlayed()
         
 //
 //        auTimePitch.pitch = 2 // In cents. The default value is 1.0. The range of values is -2400 to 2400
