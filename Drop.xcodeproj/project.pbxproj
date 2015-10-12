@@ -16,8 +16,13 @@
 		637A8EDA1BC3381700ACD313 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637A8ED91BC3381700ACD313 /* AVFoundation.framework */; };
 		637A8EDD1BC3385B00ACD313 /* photograph.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EDC1BC3385B00ACD313 /* photograph.mp3 */; };
 		637A8EDF1BC3814C00ACD313 /* grimedrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EDE1BC3814C00ACD313 /* grimedrop.mp3 */; };
-		637A8EE11BC3BA8200ACD313 /* grimedrop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EE01BC3BA8200ACD313 /* grimedrop2.mp3 */; };
 		637A8EE31BC3C01300ACD313 /* dream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 637A8EE21BC3C01300ACD313 /* dream.mp3 */; };
+		63EBA3C51BC8023E00BAA7F1 /* grimedropsecond.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63EBA3C41BC8023E00BAA7F1 /* grimedropsecond.mp3 */; };
+		63EBA3C71BC8135100BAA7F1 /* TempController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EBA3C61BC8135100BAA7F1 /* TempController.swift */; };
+		63EBA3CB1BC8934400BAA7F1 /* clap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63EBA3CA1BC8934400BAA7F1 /* clap.mp3 */; };
+		63EBA3CD1BCAC80300BAA7F1 /* kick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63EBA3CC1BCAC80300BAA7F1 /* kick.mp3 */; };
+		63EBA3CF1BCAEFE800BAA7F1 /* edsheeran.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63EBA3CE1BCAEFE800BAA7F1 /* edsheeran.mp3 */; };
+		63F675351BC7EE80001A3584 /* jb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63F675341BC7EE80001A3584 /* jb.mp3 */; };
 		D9361B191BC5CD29007152FA /* EngineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9361B181BC5CD29007152FA /* EngineViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +50,13 @@
 		637A8ED91BC3381700ACD313 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		637A8EDC1BC3385B00ACD313 /* photograph.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = photograph.mp3; sourceTree = "<group>"; };
 		637A8EDE1BC3814C00ACD313 /* grimedrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedrop.mp3; sourceTree = "<group>"; };
-		637A8EE01BC3BA8200ACD313 /* grimedrop2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedrop2.mp3; sourceTree = "<group>"; };
 		637A8EE21BC3C01300ACD313 /* dream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dream.mp3; sourceTree = "<group>"; };
+		63EBA3C41BC8023E00BAA7F1 /* grimedropsecond.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedropsecond.mp3; sourceTree = "<group>"; };
+		63EBA3C61BC8135100BAA7F1 /* TempController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempController.swift; sourceTree = "<group>"; };
+		63EBA3CA1BC8934400BAA7F1 /* clap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clap.mp3; sourceTree = "<group>"; };
+		63EBA3CC1BCAC80300BAA7F1 /* kick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kick.mp3; sourceTree = "<group>"; };
+		63EBA3CE1BCAEFE800BAA7F1 /* edsheeran.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = edsheeran.mp3; sourceTree = "<group>"; };
+		63F675341BC7EE80001A3584 /* jb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jb.mp3; sourceTree = "<group>"; };
 		D9361B181BC5CD29007152FA /* EngineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +103,7 @@
 			children = (
 				637A8E891BC2BFDB00ACD313 /* AppDelegate.swift */,
 				637A8E8B1BC2BFDB00ACD313 /* ViewController.swift */,
+				63EBA3C61BC8135100BAA7F1 /* TempController.swift */,
 				D9361B181BC5CD29007152FA /* EngineViewController.swift */,
 				637A8EDB1BC3382D00ACD313 /* Music */,
 				637A8E8D1BC2BFDB00ACD313 /* Main.storyboard */,
@@ -131,8 +142,12 @@
 		637A8EDB1BC3382D00ACD313 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				63EBA3CE1BCAEFE800BAA7F1 /* edsheeran.mp3 */,
+				63EBA3CC1BCAC80300BAA7F1 /* kick.mp3 */,
+				63EBA3CA1BC8934400BAA7F1 /* clap.mp3 */,
+				63F675341BC7EE80001A3584 /* jb.mp3 */,
+				63EBA3C41BC8023E00BAA7F1 /* grimedropsecond.mp3 */,
 				637A8EE21BC3C01300ACD313 /* dream.mp3 */,
-				637A8EE01BC3BA8200ACD313 /* grimedrop2.mp3 */,
 				637A8EDE1BC3814C00ACD313 /* grimedrop.mp3 */,
 				637A8EDC1BC3385B00ACD313 /* photograph.mp3 */,
 			);
@@ -183,11 +198,14 @@
 		637A8E7C1BC2BFDB00ACD313 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Drop;
 				TargetAttributes = {
 					637A8E831BC2BFDB00ACD313 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = Y9JESU55XH;
 					};
 					637A8E981BC2BFDB00ACD313 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -219,12 +237,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63EBA3CF1BCAEFE800BAA7F1 /* edsheeran.mp3 in Resources */,
+				63F675351BC7EE80001A3584 /* jb.mp3 in Resources */,
+				63EBA3CB1BC8934400BAA7F1 /* clap.mp3 in Resources */,
 				637A8E8F1BC2BFDB00ACD313 /* Main.storyboard in Resources */,
-				637A8EE11BC3BA8200ACD313 /* grimedrop2.mp3 in Resources */,
 				637A8EDD1BC3385B00ACD313 /* photograph.mp3 in Resources */,
 				637A8E941BC2BFDB00ACD313 /* LaunchScreen.xib in Resources */,
 				637A8E911BC2BFDB00ACD313 /* Images.xcassets in Resources */,
 				637A8EE31BC3C01300ACD313 /* dream.mp3 in Resources */,
+				63EBA3CD1BCAC80300BAA7F1 /* kick.mp3 in Resources */,
+				63EBA3C51BC8023E00BAA7F1 /* grimedropsecond.mp3 in Resources */,
 				637A8EDF1BC3814C00ACD313 /* grimedrop.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				637A8E8C1BC2BFDB00ACD313 /* ViewController.swift in Sources */,
+				63EBA3C71BC8135100BAA7F1 /* TempController.swift in Sources */,
 				637A8E8A1BC2BFDB00ACD313 /* AppDelegate.swift in Sources */,
 				D9361B191BC5CD29007152FA /* EngineViewController.swift in Sources */,
 			);
@@ -308,6 +331,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -323,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -362,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,9 +398,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Drop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Drop.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Drop;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -384,9 +412,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Drop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Drop.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Drop;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -404,6 +436,7 @@
 				);
 				INFOPLIST_FILE = DropTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Drop.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = DropTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drop.app/Drop";
 			};
@@ -419,6 +452,7 @@
 				);
 				INFOPLIST_FILE = DropTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Drop.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = DropTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drop.app/Drop";
 			};
