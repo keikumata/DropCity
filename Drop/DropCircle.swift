@@ -1,6 +1,6 @@
 //
-//  DropCircle.swift
-//  Drop
+//  PulseView.swift
+//  Visual
 //
 //  Created by Hun Ro on 10/11/15.
 //  Copyright (c) 2015 Hun Ro. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DropCircle: UIView {
+class PulseView: UIView {
   
   // default settings for programmatic
   let defaultWidth: CGFloat = 20

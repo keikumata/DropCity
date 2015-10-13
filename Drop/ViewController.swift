@@ -44,7 +44,7 @@ class ViewController: UIViewController{
         screenHeight = screenSize.height
         
         
-        var sound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("dream", ofType: "mp3")!);
+        let sound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("dream", ofType: "mp3")!);
         playerItem = AVPlayerItem(URL: sound)
         playerItem!.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed
         avplayer=AVPlayer(playerItem: playerItem!)
@@ -91,11 +91,11 @@ class ViewController: UIViewController{
         case .Began:
             rate_change = 0 // initially it's 0
             player();
-            var firstPoint = sender.locationInView(self.view)
+            let firstPoint = sender.locationInView(self.view)
             firstHeight = Float(firstPoint.y)
         case .Changed:
-            var height = sender.locationInView(self.view).y;
-            var difference = firstHeight! - Float(height)
+            let height = sender.locationInView(self.view).y;
+            let difference = firstHeight! - Float(height)
             rate_change = difference / 500;
 //            println("DIFFERENCE IS \(difference)")
 //            println("RELATIVE DISTANCE IS \(difference/500)")
@@ -142,12 +142,12 @@ class ViewController: UIViewController{
         let t1 = Float(avplayer!.currentTime().value)
         let t2 = Float(avplayer!.currentTime().timescale)
         let currentSeconds = t1 / t2
-        println("current time is \(currentSeconds)")
-        println("going back to \(goBackTo!)")
+        print("current time is \(currentSeconds)")
+        print("going back to \(goBackTo!)")
         avplayer!.seekToTime(CMTimeMake(Int64(goBackTo!), 1))
         avplayer!.play()
         avplayer!.rate = avplayer!.rate+rate_change!
-        println(avplayer!.rate)
+        print(avplayer!.rate)
         
 //        playerNode.playAtTime(UInt64(goBackTo!))
         
@@ -170,7 +170,7 @@ class ViewController: UIViewController{
         let currentSeconds = t1 / t2
         
         goBackTo = UInt64(currentSeconds) - 2
-        println(goBackTo!)
+        print(goBackTo!)
 //        rate = playerNode.rate
         
         rate = avplayer!.rate;
@@ -190,14 +190,14 @@ class ViewController: UIViewController{
         soundTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("playDrop"), userInfo: nil, repeats: false)
     }
     func playDrop() {
-        var sound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("grimedrop2", ofType: "mp3")!);
+        let sound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("grimedrop2", ofType: "mp3")!);
         playerItem = AVPlayerItem(URL: sound)
         avplayer=AVPlayer(playerItem: playerItem!)
         let playerLayer=AVPlayerLayer(player: avplayer!)
         playerLayer.frame=CGRectMake(0, 0, 300, 50)
         self.view.layer.addSublayer(playerLayer)
         avplayer!.play()
-        println("STOPPER IS RUNNING") // seems that if you stop a little bit it'll stop which shouldn't happen
+        print("STOPPER IS RUNNING") // seems that if you stop a little bit it'll stop which shouldn't happen
 
     }
 
