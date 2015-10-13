@@ -22,6 +22,7 @@ class DropCircle: UIView {
   var initialX = CGFloat()
   var initialY = CGFloat()
   
+  // handlers 
   var onPan: ()->() = {}
   var onRelease: ()->() = {}
   var onTap: ()->() = {}
