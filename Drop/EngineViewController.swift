@@ -39,8 +39,6 @@ class EngineViewController: UIViewController {
 
     var firstHeight:Float?
     var firstWidth:Float?
-    var rate_change:Float?
-    var pitch_change:Float?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,9 +113,6 @@ class EngineViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBOutlet var panGesture: UIPanGestureRecognizer!
-    
     @IBAction func playButtonPressed(sender: UIButton) {
         if (playing) {
             player1.pause()
@@ -150,64 +145,57 @@ class EngineViewController: UIViewController {
             framestoplaytriple = AVAudioFrameCount(0.2*sampleRate)
             framestoplayquadruple = AVAudioFrameCount(0.1*sampleRate)
             print("framestoplay: \(framestoplay)\n")
+            clapPlayer.play()
             looper.scheduleSegment(file, startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
                 // do some audio work
-                //                self.repeatStart()
+               self.repeatStart()
             })
             looper.play()
         }
     }
-    //    func repeatStart() {
-    //        if (start){
-    //        player2.scheduleSegment(file, startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
-    //            // do some audio work
-    //            self.repeatStart()
-    //        })
-    //        player2.play()
-    //        }
-    //    }
+    func repeatStart() {
+        if (start){
+            looper.scheduleSegment(file, startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
+                // do some audio work
+                self.repeatStart()
+            })
+            looper.play()
+        }
+    }
     var originalRate:Bool = true
     var doubleRate:Bool = true
     var tripleRate:Bool = true
-//    var quadrupleRate:Bool = true
     var frames:AVAudioFrameCount?
     var rate:Float = 1
     
     // this function increases the pitch and rate based on the coordinate locations
-    func incPitchAndRate() {
-        pitch.pitch += pitch_change!/200
+    func incPitchAndRate(pitch_change: Float, rate_change: Float) {
+        pitch.pitch += pitch_change/200
         print("before: \(pitch.rate)\n")
-        pitch.rate += rate_change!/20000
-        clappitch.rate += rate_change!/20000
+        pitch.rate += rate_change/25000
+        clappitch.rate += rate_change/20000
         print("after: \(pitch.rate)\n")
         
         if (pitch.rate <= 1.5 && originalRate) {
             frames = framestoplay
         }
-        else if (pitch.rate > 1.5 && pitch.rate <= 3.0 && doubleRate) {
+        else if (pitch.rate > 1.5 && pitch.rate <= 2.5 && doubleRate) {
             print("double");
             doubleRate = false
             looper.stop()
             frames = framestoplaydouble
         }
-        else if (pitch.rate>3.0 && pitch.rate<=3.5 && tripleRate) {
+        else if (pitch.rate>2.5 && tripleRate) {
             print("triple")
             tripleRate = false
             looper.stop()
             frames = framestoplaytriple
         }
-//        else if (rate>3.5 && quadrupleRate) {
-//            println("triple")
-//            quadrupleRate = false
-//            looper.stop()
-//            frames = framestoplaytriple
-//            clappitch.rate = 3.5
-//        }
-        
         clapPlayer.play()
         looper.scheduleSegment(file, startingFrame: frametime, frameCount: frames!, atTime: nil,completionHandler: nil)
         looper.play()
     }
+    
     // this function is called when the hold is released - runs the last loop and then calls trap
     func releasedHold() {
         pitch.pitch = 10
@@ -222,6 +210,7 @@ class EngineViewController: UIViewController {
         reverb.wetDryMix = 30
         looper.play()
     }
+    
     // runs the trap player
     func timeTrap() {
         print("timer is running")
@@ -232,21 +221,18 @@ class EngineViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var playButton: UIButton!
     
-    @IBOutlet var gestureRecognizer: UILongPressGestureRecognizer!
-    
-    // this function handles the pan gesture
+  
+    @IBAction func dropButtonPressed(sender: UIButton) {
+        let firstPoint = panGesture.locationInView(self.view)
+        firstWidth = Float(firstPoint.x)
+        firstHeight = Float(firstPoint.y)
+        startIncreasing()
+        player1.pause()
+        //add something you want to happen when the Label Panning has started
+    }
     @IBAction func handlePanPress(panGesture: UIPanGestureRecognizer) {
-        if panGesture.state == UIGestureRecognizerState.Began {
-            rate_change = 0 // initially it's 0
-            let firstPoint = panGesture.locationInView(self.view)
-            firstWidth = Float(firstPoint.x)
-            firstHeight = Float(firstPoint.y)
-            startIncreasing()
-            player1.pause()
-            //add something you want to happen when the Label Panning has started
-        }
+        dropCircle.pan(panGesture)
         if panGesture.state == UIGestureRecognizerState.Ended {
             //add something you want to happen when the Label Panning has ended
             print("stopped")
@@ -256,46 +242,17 @@ class EngineViewController: UIViewController {
             start = false;
             let height = panGesture.locationInView(self.view).y;
             let width = panGesture.locationInView(self.view).x;
-            rate_change = firstHeight! - Float(height)
-            pitch_change = Float(width) - firstWidth!
-            incPitchAndRate()
-            print(rate_change!)
-            
-        }
-            
-        else {
-            
-            // or something when its not moving
+            let rate_change = firstHeight! - Float(height)
+            let pitch_change = Float(width) - firstWidth!
+            incPitchAndRate(pitch_change, rate_change: rate_change)
+            print(rate_change)
         }
     }
     
-    // this function handles the long press gesture
-    @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
-        switch sender.state {
-        case .Began:
-            rate_change = 0 // initially it's 0
-            let firstPoint = sender.locationInView(self.view)
-            firstWidth = Float(firstPoint.x)
-            firstHeight = Float(firstPoint.y)
-            startIncreasing()
-            player1.pause()
-        case .Changed:
-            start = false;
-            let height = sender.locationInView(self.view).y;
-            let width = sender.locationInView(self.view).x;
-            rate_change = firstHeight! - Float(height)
-            pitch_change = Float(width) - firstWidth!
-            incPitchAndRate()
-            print(rate_change!)
-            
-            // now think about how to repeat without constant timer repeats
-        case .Ended:
-            print("stopped")
-            releasedHold()
-            
-        default: break;
-        }
-    }
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet var panGesture: UIPanGestureRecognizer!
     
-    
+    @IBOutlet var dropCircle: DropCircle!
+    // this function handles the pan gesture
+    @IBOutlet weak var dropButton: UIButton!
 }

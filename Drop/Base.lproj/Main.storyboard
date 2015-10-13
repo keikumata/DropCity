@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2tm-Bm-dbf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Engine View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Drop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EngineViewController" customModule="Drop" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X26-mF-kiw">
-                                <rect key="frame" x="127" y="220" width="34" height="30"/>
+                                <rect key="frame" x="88" y="113" width="34" height="30"/>
                                 <state key="normal" title="Play ">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -26,68 +26,47 @@
                                     <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z8o-8p-zVN"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sMm-kO-Gjf" customClass="DropCircle" customModule="Drop" customModuleProvider="target">
+                                <rect key="frame" x="76" y="490" width="59" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K18-j4-AWf">
+                                        <rect key="frame" x="0.0" y="0.0" width="59" height="60"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dropButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="7AP-1R-Y9Y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="88d-2J-Q0d" appends="YES" id="pgK-p5-wbq"/>
+                                </connections>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.6110519255050505" green="0.6110519255050505" blue="0.6110519255050505" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="plm-YD-POG" appends="YES" id="3hc-HD-vUP"/>
-                        </connections>
                     </view>
                     <connections>
-                        <outlet property="LongPressView" destination="plm-YD-POG" id="osK-EB-vm9"/>
                         <outlet property="PlayButton" destination="X26-mF-kiw" id="QKP-gD-Czr"/>
+                        <outlet property="dropButton" destination="K18-j4-AWf" id="TeT-OL-6oH"/>
+                        <outlet property="dropCircle" destination="sMm-kO-Gjf" id="Fbk-3x-k7K"/>
+                        <outlet property="panGesture" destination="88d-2J-Q0d" id="x6D-fi-vYC"/>
+                        <outlet property="playButton" destination="X26-mF-kiw" id="Wrn-r2-n2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="plm-YD-POG">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="88d-2J-Q0d">
                     <connections>
-                        <action selector="handleLongPress:" destination="BYZ-38-t0r" id="vxL-4r-B3H"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="7nF-ux-Cur"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-            </objects>
-        </scene>
-        <!--Engine View Controller-->
-        <scene sceneID="Ojw-yv-w9o">
-            <objects>
-                <viewController id="2tm-Bm-dbf" customClass="EngineViewController" customModule="Drop" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="blI-zP-nF0"/>
-                        <viewControllerLayoutGuide type="bottom" id="8CO-UA-ozH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Hkf-D2-fiH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jq-89-GIa">
-                                <rect key="frame" x="125" y="95" width="30" height="30"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="2tm-Bm-dbf" eventType="touchUpInside" id="1Us-d9-vAz"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="ZCK-E7-IK7" appends="YES" id="Y72-k3-eIW"/>
-                        </connections>
-                    </view>
-                    <connections>
-                        <outlet property="panGesture" destination="ZCK-E7-IK7" id="j1Y-Uk-7Sb"/>
-                        <outlet property="playButton" destination="9jq-89-GIa" id="5qX-OL-B6q"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uBQ-fK-M5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="ZCK-E7-IK7">
-                    <connections>
-                        <action selector="handlePanPress:" destination="2tm-Bm-dbf" id="dVp-pk-yow"/>
+                        <action selector="handlePanPress:" destination="BYZ-38-t0r" id="uPm-Eh-fgn"/>
+                        <outlet property="delegate" destination="sMm-kO-Gjf" id="fc8-wU-AUi"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="800" y="302"/>
+            <point key="canvasLocation" x="139" y="230"/>
         </scene>
         <!--Temp Controller-->
         <scene sceneID="prB-5m-JZm">

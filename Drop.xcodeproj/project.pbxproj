@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		635F5E711BCC2E9600D7A205 /* DropCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635F5E701BCC2E9600D7A205 /* DropCircle.swift */; settings = {ASSET_TAGS = (); }; };
 		637A8E8A1BC2BFDB00ACD313 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637A8E891BC2BFDB00ACD313 /* AppDelegate.swift */; };
 		637A8E8C1BC2BFDB00ACD313 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637A8E8B1BC2BFDB00ACD313 /* ViewController.swift */; };
 		637A8E8F1BC2BFDB00ACD313 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 637A8E8D1BC2BFDB00ACD313 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		635F5E701BCC2E9600D7A205 /* DropCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropCircle.swift; sourceTree = "<group>"; };
 		637A8E841BC2BFDB00ACD313 /* Drop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		637A8E881BC2BFDB00ACD313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		637A8E891BC2BFDB00ACD313 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				637A8E8B1BC2BFDB00ACD313 /* ViewController.swift */,
 				63EBA3C61BC8135100BAA7F1 /* TempController.swift */,
 				D9361B181BC5CD29007152FA /* EngineViewController.swift */,
+				635F5E701BCC2E9600D7A205 /* DropCircle.swift */,
 				637A8EDB1BC3382D00ACD313 /* Music */,
 				637A8E8D1BC2BFDB00ACD313 /* Main.storyboard */,
 				637A8E901BC2BFDB00ACD313 /* Images.xcassets */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635F5E711BCC2E9600D7A205 /* DropCircle.swift in Sources */,
 				637A8E8C1BC2BFDB00ACD313 /* ViewController.swift in Sources */,
 				63EBA3C71BC8135100BAA7F1 /* TempController.swift in Sources */,
 				637A8E8A1BC2BFDB00ACD313 /* AppDelegate.swift in Sources */,
