@@ -106,6 +106,17 @@ class EngineViewController: UIViewController {
         do {
             try audioEngine.start()
         } catch {}
+        
+        dropCircle.onPan = {
+            self.onPanChange()
+        }
+        dropCircle.onRelease = {
+            self.releasedHold()
+        }
+        dropCircle.onTap = {
+            self.onTapPressed()
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -221,16 +232,31 @@ class EngineViewController: UIViewController {
         }
     }
     
+    func onPanChange(panGesture: UIPanGestureRecognizer) {
+        start = false;
+        let height = panGesture.locationInView(self.view).y;
+        let width = panGesture.locationInView(self.view).x;
+        let rate_change = firstHeight! - Float(height)
+        let pitch_change = Float(width) - firstWidth!
+        incPitchAndRate(pitch_change, rate_change: rate_change)
+        print(rate_change)
+    }
+    func onTapPressed (panGesture: UIPanGestureRecognizer) {
+        let firstPoint = panGesture.locationInView(self.view)
+        firstWidth = Float(firstPoint.x)
+        firstHeight = Float(firstPoint.y)
+        startIncreasing()
+        player1.pause()
+    }
     
-  
     @IBAction func dropButtonPressed(sender: UIButton) {
         let firstPoint = panGesture.locationInView(self.view)
         firstWidth = Float(firstPoint.x)
         firstHeight = Float(firstPoint.y)
         startIncreasing()
         player1.pause()
-        //add something you want to happen when the Label Panning has started
     }
+    
     @IBAction func handlePanPress(panGesture: UIPanGestureRecognizer) {
         dropCircle.pan(panGesture)
         if panGesture.state == UIGestureRecognizerState.Ended {

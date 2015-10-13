@@ -39,7 +39,7 @@ class DropCircle: UIView {
   }
   
   required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+    super.init(coder: aDecoder)!
     self.setup(frame)
   }
   
@@ -71,7 +71,7 @@ class DropCircle: UIView {
   func pan(sender: UIPanGestureRecognizer) {
     switch sender.state {
     case .Changed:
-      var translation: CGPoint = sender.translationInView(self)
+      let translation: CGPoint = sender.translationInView(self)
       var newFrame = self.frame
       newFrame.origin.x += translation.x
       newFrame.origin.y += translation.y
@@ -122,19 +122,19 @@ class DropCircle: UIView {
     var circlePathLarge: UIBezierPath {
       return UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: (frame.width*radius), height: (frame.height*radius)))
     }
-    var expandAnimation: CABasicAnimation = CABasicAnimation(keyPath: "path")
+    let expandAnimation: CABasicAnimation = CABasicAnimation(keyPath: "path")
     expandAnimation.fromValue = circlePathSmall.CGPath
     expandAnimation.toValue = circlePathLarge.CGPath
     expandAnimation.beginTime = 0.0
     expandAnimation.duration = 0.1
     
-    var contractAnimation: CABasicAnimation = CABasicAnimation(keyPath: "path")
+    let contractAnimation: CABasicAnimation = CABasicAnimation(keyPath: "path")
     contractAnimation.fromValue = circlePathLarge.CGPath
     contractAnimation.toValue = circlePathSmall.CGPath
     contractAnimation.beginTime = expandAnimation.beginTime + expandAnimation.duration
     contractAnimation.duration = 0.1
     
-    var animationGroup: CAAnimationGroup = CAAnimationGroup()
+    let animationGroup: CAAnimationGroup = CAAnimationGroup()
     animationGroup.animations = [expandAnimation, contractAnimation]
     animationGroup.duration = contractAnimation.beginTime + contractAnimation.duration
     animationGroup.repeatCount = 1

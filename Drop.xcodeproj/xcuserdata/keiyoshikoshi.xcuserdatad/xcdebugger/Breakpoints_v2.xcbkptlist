@@ -342,11 +342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Drop/EngineViewController.swift"
-            timestampString = "466442275.771404"
+            timestampString = "466451718.557616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "incPitchAndRate(_:rate_change:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -358,12 +358,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Drop/EngineViewController.swift"
-            timestampString = "466442275.771404"
+            timestampString = "466451718.557616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "handlePanPress(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Drop/DropCircle.swift"
+            timestampString = "466451462.827574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "pan(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

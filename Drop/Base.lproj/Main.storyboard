@@ -42,9 +42,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="88d-2J-Q0d" appends="YES" id="pgK-p5-wbq"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.6110519255050505" green="0.6110519255050505" blue="0.6110519255050505" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,17 +51,10 @@
                         <outlet property="PlayButton" destination="X26-mF-kiw" id="QKP-gD-Czr"/>
                         <outlet property="dropButton" destination="K18-j4-AWf" id="TeT-OL-6oH"/>
                         <outlet property="dropCircle" destination="sMm-kO-Gjf" id="Fbk-3x-k7K"/>
-                        <outlet property="panGesture" destination="88d-2J-Q0d" id="x6D-fi-vYC"/>
                         <outlet property="playButton" destination="X26-mF-kiw" id="Wrn-r2-n2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="88d-2J-Q0d">
-                    <connections>
-                        <action selector="handlePanPress:" destination="BYZ-38-t0r" id="uPm-Eh-fgn"/>
-                        <outlet property="delegate" destination="sMm-kO-Gjf" id="fc8-wU-AUi"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="139" y="230"/>
         </scene>
