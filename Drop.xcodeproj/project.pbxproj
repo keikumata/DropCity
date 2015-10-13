@@ -54,16 +54,13 @@
 		637A8EDC1BC3385B00ACD313 /* photograph.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = photograph.mp3; sourceTree = "<group>"; };
 		637A8EDE1BC3814C00ACD313 /* grimedrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedrop.mp3; sourceTree = "<group>"; };
 		637A8EE21BC3C01300ACD313 /* dream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dream.mp3; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		63EBA3C41BC8023E00BAA7F1 /* grimedropsecond.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grimedropsecond.mp3; sourceTree = "<group>"; };
 		63EBA3C61BC8135100BAA7F1 /* TempController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempController.swift; sourceTree = "<group>"; };
 		63EBA3CA1BC8934400BAA7F1 /* clap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clap.mp3; sourceTree = "<group>"; };
 		63EBA3CC1BCAC80300BAA7F1 /* kick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kick.mp3; sourceTree = "<group>"; };
 		63EBA3CE1BCAEFE800BAA7F1 /* edsheeran.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = edsheeran.mp3; sourceTree = "<group>"; };
 		63F675341BC7EE80001A3584 /* jb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jb.mp3; sourceTree = "<group>"; };
-=======
 		D90604ED1BCC096500DD0E9E /* DropCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropCircle.swift; sourceTree = "<group>"; };
->>>>>>> f1d9bb28619dc09d5a10ec26bf275a4d5c725788
 		D9361B181BC5CD29007152FA /* EngineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,11 +107,8 @@
 			children = (
 				637A8E891BC2BFDB00ACD313 /* AppDelegate.swift */,
 				637A8E8B1BC2BFDB00ACD313 /* ViewController.swift */,
-<<<<<<< HEAD
 				63EBA3C61BC8135100BAA7F1 /* TempController.swift */,
-=======
 				D90604ED1BCC096500DD0E9E /* DropCircle.swift */,
->>>>>>> f1d9bb28619dc09d5a10ec26bf275a4d5c725788
 				D9361B181BC5CD29007152FA /* EngineViewController.swift */,
 				635F5E701BCC2E9600D7A205 /* DropCircle.swift */,
 				637A8EDB1BC3382D00ACD313 /* Music */,
