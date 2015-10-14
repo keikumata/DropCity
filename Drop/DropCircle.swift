@@ -23,8 +23,9 @@ class DropCircle: UIView {
   var initialY = CGFloat()
   
   var onPan:(sender: UIPanGestureRecognizer)->Void = { arg in }
-  var onRelease:(sender: UIPanGestureRecognizer)->Void = { arg in }
-  var onTap: (sender: UIButton)->Void = { arg in }
+  var onRelease:()->() = {}
+  var onTap: (sender: UIPanGestureRecognizer)->Void = { arg in }
+    var onButtonRelease: ()->() = {}
   
   let panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer()
   let buttonTap: UIButton = UIButton()
@@ -94,7 +95,7 @@ class DropCircle: UIView {
       UIView.commitAnimations()
       circleLayer.opacity = 0.6
       
-      self.onRelease(sender: sender)
+      self.onRelease()
     default:
       break
     }
@@ -102,11 +103,12 @@ class DropCircle: UIView {
   
   func tap (sender: UIButton) {
     circleLayer.opacity = 1.0
-    self.onTap(sender: sender)
+    self.onTap(sender: panGesture)
   }
   
   func release (sender: UIButton) {
     circleLayer.opacity = 0.6
+    self.onButtonRelease()
   }
   
   // drawing and animation

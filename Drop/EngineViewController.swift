@@ -15,14 +15,15 @@ class EngineViewController: UIViewController {
     var start: Bool = true
     
     var sound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("jb", ofType: "mp3")!)
-    var trap = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("grimedropsecond", ofType: "mp3")!)
+    var trap = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("forbesdrop", ofType: "mp3")!)
     var clap = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("clap", ofType: "mp3")!)
     var reverb = AVAudioUnitReverb()
     var audioEngine = AVAudioEngine()
-    var player1 = AVAudioPlayerNode()
+    var mainPlayer = AVAudioPlayerNode()
     var looper = AVAudioPlayerNode()
     var trapPlayer = AVAudioPlayerNode()
     var clapPlayer = AVAudioPlayerNode()
+    var currentPlayer = AVAudioPlayerNode()
     
     var buffer = AVAudioPCMBuffer()
     var file = AVAudioFile()
@@ -39,10 +40,12 @@ class EngineViewController: UIViewController {
 
     var firstHeight:Float?
     var firstWidth:Float?
+    var startTimer: NSDate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        player1.volume = 1
+        mainPlayer.volume = 1
         looper.volume = 1
         trapPlayer.volume = 1
         clapPlayer.volume = 0.5
@@ -81,8 +84,9 @@ class EngineViewController: UIViewController {
         let mainMixer = audioEngine.mainMixerNode
         
         pitch.pitch = 10
+        pitch.rate = 1;
         clappitch.pitch = 10
-        audioEngine.attachNode(player1)
+        audioEngine.attachNode(mainPlayer)
         audioEngine.attachNode(looper)
         audioEngine.attachNode(trapPlayer)
         audioEngine.attachNode(reverb)
@@ -90,7 +94,7 @@ class EngineViewController: UIViewController {
         audioEngine.attachNode(clappitch)
         audioEngine.attachNode(clapPlayer)
         
-        audioEngine.connect(player1, to: mainMixer, format: buffer.format)
+        audioEngine.connect(mainPlayer, to: mainMixer, format: buffer.format)
         audioEngine.connect(looper, to: pitch, format: buffer.format)
         audioEngine.connect(pitch, to: reverb, format:buffer.format)
         audioEngine.connect(reverb, to: mainMixer, format: buffer.format)
@@ -98,7 +102,7 @@ class EngineViewController: UIViewController {
         audioEngine.connect(clapPlayer, to: clappitch, format: clapbuffer.format)
         audioEngine.connect(clappitch, to: mainMixer, format: clapbuffer.format)
         
-        player1.scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
+        mainPlayer.scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
         trapPlayer.scheduleBuffer(trapbuffer, atTime: nil, options: .Loops, completionHandler: nil)
         clapPlayer.scheduleBuffer(clapbuffer, atTime:nil, options: .Loops, completionHandler: nil)
         
@@ -107,16 +111,10 @@ class EngineViewController: UIViewController {
             try audioEngine.start()
         } catch {}
         
-        dropCircle.onPan = {
-            self.onPanChange()
-        }
-        dropCircle.onRelease = {
-            self.releasedHold()
-        }
-        dropCircle.onTap = {
-            self.onTapPressed()
-        }
-        
+        dropCircle.onPan = self.onPanChange
+        dropCircle.onRelease = self.releasedHold
+        dropCircle.onTap = self.onTapPressed
+        dropCircle.onButtonRelease = self.onTapReleased
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,11 +124,12 @@ class EngineViewController: UIViewController {
     
     @IBAction func playButtonPressed(sender: UIButton) {
         if (playing) {
-            player1.pause()
+            mainPlayer.pause()
             playing = false
         } else {
-            player1.play()
+            mainPlayer.play()
             playing = true
+            currentPlayer = mainPlayer;
         }
     }
     
@@ -143,22 +142,20 @@ class EngineViewController: UIViewController {
     var clapframestoplay = AVAudioFrameCount()
     
     // this function sets up the looping of the track and number of frames it runs
-    func startIncreasing(){
+    func startIncreasing(looptime: NSTimeInterval){
         if (playing) {
-            let nodetime: AVAudioTime  = player1.lastRenderTime!
-            let playerTime: AVAudioTime = player1.playerTimeForNodeTime(nodetime)!
+            let nodetime: AVAudioTime  = currentPlayer.lastRenderTime!
+            let playerTime: AVAudioTime = currentPlayer.playerTimeForNodeTime(nodetime)!
             let sampleRate = Double(playerTime.sampleRate)
-            let sampleTime = Double(playerTime.sampleTime)
+            let sampleTime = Double(playerTime.sampleTime) - looptime*sampleRate
             frametime = AVAudioFramePosition(sampleTime)
             print("frametime: \(frametime)\n")
-            framestoplay = AVAudioFrameCount(2*sampleRate)
+            framestoplay = AVAudioFrameCount(looptime*sampleRate)
             framestoplaydouble = AVAudioFrameCount(0.8*sampleRate)
-            framestoplaytriple = AVAudioFrameCount(0.2*sampleRate)
-            framestoplayquadruple = AVAudioFrameCount(0.1*sampleRate)
+            framestoplaytriple = AVAudioFrameCount(0.3*sampleRate)
             print("framestoplay: \(framestoplay)\n")
             clapPlayer.play()
-            looper.scheduleSegment(file, startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
-                // do some audio work
+            looper.scheduleSegment(chooseFile(), startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
                self.repeatStart()
             })
             looper.play()
@@ -166,7 +163,7 @@ class EngineViewController: UIViewController {
     }
     func repeatStart() {
         if (start){
-            looper.scheduleSegment(file, startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
+            looper.scheduleSegment(chooseFile(), startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
                 // do some audio work
                 self.repeatStart()
             })
@@ -203,7 +200,7 @@ class EngineViewController: UIViewController {
             frames = framestoplaytriple
         }
         clapPlayer.play()
-        looper.scheduleSegment(file, startingFrame: frametime, frameCount: frames!, atTime: nil,completionHandler: nil)
+        looper.scheduleSegment(chooseFile(), startingFrame: frametime, frameCount: frames!, atTime: nil,completionHandler: nil)
         looper.play()
     }
     
@@ -213,24 +210,27 @@ class EngineViewController: UIViewController {
         pitch.rate = 1
         clapPlayer.stop()
         looper.stop()
-        looper.scheduleSegment(file, startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
+        looper.scheduleSegment(chooseFile(), startingFrame: frametime, frameCount: framestoplay, atTime: nil,completionHandler: { () -> Void in
             print("it's done")
             self.timeTrap();
         })
         reverb.loadFactoryPreset(AVAudioUnitReverbPreset.Plate)
         reverb.wetDryMix = 30
         looper.play()
+        
     }
     
     // runs the trap player
     func timeTrap() {
         print("timer is running")
-        let delay = 0.95*Double(NSEC_PER_SEC)
+        let delay = 1.00*Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()) {
             self.trapPlayer.play()
+            self.currentPlayer = self.trapPlayer
         }
     }
+    // MAKE IT SO THAT YOU CAN'T DRAG WITHOUT THE FIRST HOLD
     
     func onPanChange(panGesture: UIPanGestureRecognizer) {
         start = false;
@@ -245,40 +245,29 @@ class EngineViewController: UIViewController {
         let firstPoint = panGesture.locationInView(self.view)
         firstWidth = Float(firstPoint.x)
         firstHeight = Float(firstPoint.y)
-        startIncreasing()
-        player1.pause()
+        startTimer = NSDate()
+        
+        reverb.reset() // clearly not working
+        print("THIS IS REVERB \(reverb.wetDryMix)")
+    }
+    func onTapReleased() {
+        let timeElapsed = abs(startTimer!.timeIntervalSinceNow)
+        startIncreasing(timeElapsed)
+        currentPlayer.pause()
+        start = true
     }
     
-    @IBAction func dropButtonPressed(sender: UIButton) {
-        let firstPoint = panGesture.locationInView(self.view)
-        firstWidth = Float(firstPoint.x)
-        firstHeight = Float(firstPoint.y)
-        startIncreasing()
-        player1.pause()
-    }
-    
-    @IBAction func handlePanPress(panGesture: UIPanGestureRecognizer) {
-        dropCircle.pan(panGesture)
-        if panGesture.state == UIGestureRecognizerState.Ended {
-            //add something you want to happen when the Label Panning has ended
-            print("stopped")
-            releasedHold()
+    func chooseFile() -> (AVAudioFile) {
+        if (currentPlayer == mainPlayer) {
+            return file;
         }
-        if panGesture.state == UIGestureRecognizerState.Changed {
-            start = false;
-            let height = panGesture.locationInView(self.view).y;
-            let width = panGesture.locationInView(self.view).x;
-            let rate_change = firstHeight! - Float(height)
-            let pitch_change = Float(width) - firstWidth!
-            incPitchAndRate(pitch_change, rate_change: rate_change)
-            print(rate_change)
+        else if (currentPlayer == trapPlayer) {
+            return trapfile;
         }
+        return file;
     }
     
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet var panGesture: UIPanGestureRecognizer!
     
     @IBOutlet var dropCircle: DropCircle!
-    // this function handles the pan gesture
-    @IBOutlet weak var dropButton: UIButton!
 }
