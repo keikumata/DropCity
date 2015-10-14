@@ -10,22 +10,22 @@ import UIKit
 
 class DropCircle: UIView {
   
-  // default settings for programmatic
-  let defaultWidth: CGFloat = 20
-  let defaultHeight: CGFloat = 20
-  
   // customizable
-  var averageDecibel: Float = 0.0
-  var factor: Int = 1
+  var averageDecibel: Float = 0
+  var factor: Float = 1.6
+  var animationDuration: CFTimeInterval = 0.1
   
   // initial position
   var initialX = CGFloat()
   var initialY = CGFloat()
   
+  // gesture handlers
   var onPan:(sender: UIPanGestureRecognizer)->Void = { arg in }
-  var onRelease:(sender: UIPanGestureRecognizer)->Void = { arg in }
-  var onTap: (sender: UIButton)->Void = { arg in }
+  var onPanRelease:()->() = { }
+  var onTouchDown: (sender: UIPanGestureRecognizer)->Void = { arg in }
+  var onTouchUp: ()->() = {}
   
+  // components
   let panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer()
   let buttonTap: UIButton = UIButton()
   
@@ -43,6 +43,7 @@ class DropCircle: UIView {
   }
   
   func setup(frame: CGRect) {
+    
     self.initialX = frame.origin.x
     self.initialY = frame.origin.y
     
@@ -62,7 +63,7 @@ class DropCircle: UIView {
   }
   
   // update called from controller
-  func updateDecibel(radius: CGFloat) {
+  func updateDecibel(radius: Float) {
     self.animateCircle(radius)
   }
   
@@ -94,7 +95,7 @@ class DropCircle: UIView {
       UIView.commitAnimations()
       circleLayer.opacity = 0.6
       
-      self.onRelease(sender: sender)
+      self.onPanRelease()
     default:
       break
     }
@@ -102,11 +103,12 @@ class DropCircle: UIView {
   
   func tap (sender: UIButton) {
     circleLayer.opacity = 1.0
-    self.onTap(sender: sender)
+    self.onTouchDown(sender: panGesture)
   }
   
   func release (sender: UIButton) {
     circleLayer.opacity = 0.6
+    self.onTouchUp()
   }
   
   // drawing and animation
@@ -117,27 +119,16 @@ class DropCircle: UIView {
     self.layer.addSublayer(circleLayer)
   }
   
-  func animateCircle(radius: CGFloat) {
-    var circlePathLarge: UIBezierPath {
-      return UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: (frame.width*radius), height: (frame.height*radius)))
-    }
-    var expandAnimation: CABasicAnimation = CABasicAnimation(keyPath: "path")
-    expandAnimation.fromValue = circlePathSmall.CGPath
-    expandAnimation.toValue = circlePathLarge.CGPath
-    expandAnimation.beginTime = 0.0
-    expandAnimation.duration = 0.1
-    
-    var contractAnimation: CABasicAnimation = CABasicAnimation(keyPath: "path")
-    contractAnimation.fromValue = circlePathLarge.CGPath
-    contractAnimation.toValue = circlePathSmall.CGPath
-    contractAnimation.beginTime = expandAnimation.beginTime + expandAnimation.duration
-    contractAnimation.duration = 0.1
-    
-    var animationGroup: CAAnimationGroup = CAAnimationGroup()
-    animationGroup.animations = [expandAnimation, contractAnimation]
-    animationGroup.duration = contractAnimation.beginTime + contractAnimation.duration
-    animationGroup.repeatCount = 1
-    circleLayer.addAnimation(animationGroup, forKey: nil)
+  func animateCircle(radius: Float) {
+    let update = CGFloat(radius*factor)
+    UIView.animateWithDuration(self.animationDuration, animations: {
+      self.transform = CGAffineTransformMakeScale(update, update)
+      }, completion: {
+        (value: Bool) -> Void in
+        UIView.animateWithDuration(self.animationDuration, animations: {
+          self.transform = CGAffineTransformMakeScale(1,1)
+        })
+    })
   }
   
 }
