@@ -342,11 +342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Drop/EngineViewController.swift"
-            timestampString = "466479862.686717"
+            timestampString = "466481113.063994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "incPitchAndRate(_:rate_change:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -358,12 +358,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Drop/DropCircle.swift"
-            timestampString = "466477722.851444"
+            timestampString = "466481113.063994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "pan(_:)"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "updateDecibel(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Drop/EngineViewController.swift"
-            timestampString = "466480159.201268"
+            timestampString = "466481113.063994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "onTapPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>

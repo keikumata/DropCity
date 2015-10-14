@@ -112,9 +112,9 @@ class EngineViewController: UIViewController {
         } catch {}
         
         dropCircle.onPan = self.onPanChange
-        dropCircle.onRelease = self.releasedHold
-        dropCircle.onTap = self.onTapPressed
-        dropCircle.onButtonRelease = self.onTapReleased
+        dropCircle.onPanRelease = self.releasedHold
+        dropCircle.onTouchDown = self.onTapPressed
+        dropCircle.onTouchUp = self.onTapReleased
     }
     
     override func didReceiveMemoryWarning() {
