@@ -38,7 +38,7 @@ class DropCircle: UIView {
   }
   
   required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+    super.init(coder: aDecoder)!
     self.setup(frame)
   }
   
@@ -71,7 +71,7 @@ class DropCircle: UIView {
   func pan(sender: UIPanGestureRecognizer) {
     switch sender.state {
     case .Changed:
-      var translation: CGPoint = sender.translationInView(self)
+      let translation: CGPoint = sender.translationInView(self)
       var newFrame = self.frame
       newFrame.origin.x += translation.x
       newFrame.origin.y += translation.y
