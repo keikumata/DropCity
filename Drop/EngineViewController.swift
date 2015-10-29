@@ -105,7 +105,7 @@ class EngineViewController: UIViewController {
         mainPlayer.scheduleBuffer(buffer, atTime: nil, options: .Loops, completionHandler: nil)
         trapPlayer.scheduleBuffer(trapbuffer, atTime: nil, options: .Loops, completionHandler: nil)
         clapPlayer.scheduleBuffer(clapbuffer, atTime:nil, options: .Loops, completionHandler: nil)
-        
+      
         audioEngine.prepare()
         do {
             try audioEngine.start()
