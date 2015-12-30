@@ -115,6 +115,10 @@ class EngineViewController: UIViewController {
         dropCircle.onPanRelease = self.releasedHold
         dropCircle.onTouchDown = self.onTapPressed
         dropCircle.onTouchUp = self.onTapReleased
+      
+        let displaylink: CADisplayLink = CADisplayLink(target: self, selector: "recordWave")
+        displaylink.frameInterval = 5
+        displaylink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
     override func didReceiveMemoryWarning() {
@@ -270,4 +274,17 @@ class EngineViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     
     @IBOutlet var dropCircle: DropCircle!
+  
+    func recordWave() {
+      if (self.playing) {
+        let nodetime: AVAudioTime  = mainPlayer.lastRenderTime!
+        let playerTime: AVAudioTime = mainPlayer.playerTimeForNodeTime(nodetime)!
+        _ = Double(playerTime.sampleRate)
+        let sampleTime = Double(playerTime.sampleTime)
+        frametime = AVAudioFramePosition(sampleTime)
+        let value = (20*log10(abs(buffer.floatChannelData.memory[Int(frametime)]))+100)/100
+      } else {
+        let value = 0
+      }
+    }
 }
